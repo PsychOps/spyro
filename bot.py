@@ -7,7 +7,7 @@ from discord.ext import commands
 
 
 def get_prefix(bot, message):
-    prefixes = ["e!", "exo "]
+    prefixes = ["sp", "spyro "]
     
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
