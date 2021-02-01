@@ -17,7 +17,7 @@ def get_prefix(bot, message):
 bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True, allowed_mentions=discord.AllowedMentions.none(), max_messages=10000)
 intents=discord.Intents.none()
 
-for extension in config.extensions:
+for extension in config.extenSions:
     try:
         bot.load_extension(extension)
         print(f'[extension] {extension} was loaded successfully!')
