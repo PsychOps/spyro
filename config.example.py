@@ -1,6 +1,6 @@
 token = 'YOUR_BOT_TOKEN'
 
-extensions = ['info.py',
+extensions = ['cogs.info',
               'jishaku'
 ]
 
