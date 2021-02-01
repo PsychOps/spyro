@@ -22,5 +22,14 @@ class info(commands.Cog, name="Info"):
     async def respond(self, ctx):
         await ctx.send("success")
 
+    @commands.command(name="shutdown", aliases=["logout"])
+    async def jsk_shutdown(self, ctx: commands.Context):
+        """
+        Logs this bot out.
+        """
+
+        await ctx.send("Logging out now")
+        await ctx.bot.logout()
+
 def setup(bot):
     bot.add_cog(info(bot))
