@@ -5,6 +5,7 @@ import psutil
 import traceback
 from discord.ext import commands
 
+print('Test 1 works')
 
 def get_prefix(bot, message):
     prefixes = ["sp", "spyro "]
@@ -17,6 +18,7 @@ def get_prefix(bot, message):
 bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True, allowed_mentions=discord.AllowedMentions.none(), max_messages=10000)
 intents=discord.Intents.none()
 
+print('Test 2 works')
 for extension in config.extenSions:
     try:
         bot.load_extension(extension)
@@ -25,5 +27,7 @@ for extension in config.extenSions:
         tb = traceback.format_exception(type(e), e, e.__traceback__)
         tbe = "".join(tb) + ""
         print(f'[WARNING] Could not load extension {extension}: {tbe}')
+
+print('Test 3 works')
 
 bot.run(config.token)
