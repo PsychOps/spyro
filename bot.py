@@ -3,9 +3,12 @@ import config
 import aiohttp
 import psutil
 import traceback
+import logging
 from discord.ext import commands
 
 print('Test 1 works')
+
+logging.basicConfig(level=logging.INFO)
 
 def get_prefix(bot, message):
     prefixes = ["sp", "spyro "]
