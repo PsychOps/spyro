@@ -9,4 +9,4 @@ green = (0x2aa72a)
 orange = (0xFF7F50)
 blue = (0x00BFFF)
 
-dev = https://discord.com/users/698080201158033409
+dev = "https://discord.com/users/698080201158033409"
