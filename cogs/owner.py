@@ -14,9 +14,18 @@ class owner(commands.Cog, name="Owner"):
             return
         try:
             self.bot.unload_extension(cog)
-            await ctx.send(f'Successfully unloaded {cog}')
+            await ctx.send(f'Successfully unloaded`{cog}`.')
         except Exception as e:
             await ctx.send(f'Failed to unload {cog}\n```py\n{e}\n```')
+            
+    @commands.command(brief="load a cog")
+    @commands.is_owner()
+    async def load(self, ctx, *, cog):
+        try:
+            self.bot.load_extension(cog)
+            await ctx.send(f'Successfully loaded `{cog}`.')
+        except Exception as e:
+            await ctx.send(f'Failed to load {cog}\n```py\n{e}\n```')
 
 def setup(bot):
     bot.add_cog(owner(bot))
