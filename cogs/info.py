@@ -20,7 +20,7 @@ class info(commands.Cog, name="Info"):
 
     @commands.command(brief="test command")
     async def respond(self, ctx, *, args):
-        await ctx.send(f"args")
+        await ctx.send(f"{args}")
 
     @commands.command(name="shutdown", aliases=["logout"])
     @commands.is_owner()
