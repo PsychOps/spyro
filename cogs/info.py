@@ -25,7 +25,7 @@ class info(commands.Cog, name="Info"):
         await ctx.send(embed=e)
     
     
-    @commands.command(brief="Credit to others", alias="icon')
+    @commands.command(brief="Credit to others", alias="icon")
     async def credit(self, ctx):
         e = discord.Embed(color=config.blue)
         e.description = f"""
