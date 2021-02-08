@@ -26,6 +26,15 @@ class owner(commands.Cog, name="Owner"):
             await ctx.send(f'Successfully loaded `{cog}`.')
         except Exception as e:
             await ctx.send(f'Failed to load {cog}\n```py\n{e}\n```')
+            
+    @commands.command(brief="Reload a cog")
+    @commands.is_owner()
+    async def reload(self, ctx, *, cog):
+        try:
+            self.bot.reload_extension(cog)
+            await ctx.send(f'Successfully reloaded `{cog}`.')
+        except Exception as e:
+            await ctx.send(f'Failed to load {cog}\n```py\n{e}\n```')
 
 def setup(bot):
     bot.add_cog(owner(bot))
