@@ -20,7 +20,7 @@ class info(commands.Cog, name="Info"):
 
     @commands.command(brief="test command")
     async def respond(self, ctx, *, args):
-        e=discord.Embed(color=config.red)
+        e=discord.Embed(color=config.rEd)
         e.description = f"{args}"
         await ctx.send(embed=e)
 
