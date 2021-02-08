@@ -20,7 +20,9 @@ class info(commands.Cog, name="Info"):
 
     @commands.command(brief="test command")
     async def respond(self, ctx, *, args):
-        await ctx.send(f"{args}")
+        e=discord.Embed(color=config.red)
+        e.description = f"{args}"
+        await ctx.send(embed=e)
 
     @commands.command(name="shutdown", aliases=["logout"])
     @commands.is_owner()
