@@ -23,13 +23,22 @@ class info(commands.Cog, name="Info"):
         await ctx.send("success")
 
     @commands.command(name="shutdown", aliases=["logout"])
+    @commands.is_owner()
     async def jsk_shutdown(self, ctx: commands.Context):
         """
         Logs this bot out.
         """
 
         await ctx.send("Logging out now")
-        await ctx.bot.logout()
+        await self.bot.logout()# use self.bot not ctx.bot - they're the same but self.bot is betterererer
+        
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.CommandNotFound):
+            pass
+        else:
+            embed = discord.Embed(description=str(error), color=discord.Color.red())
+            await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(info(bot))
