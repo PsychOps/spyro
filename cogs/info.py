@@ -32,7 +32,7 @@ class info(commands.Cog, name="Info"):
 __**Graphics**__
 `FLVincent 42` - Icon
 ╠[Logo on wikimedia](https://commons.wikimedia.org/wiki/File:LOGO_Wolf_Games.jpg)
-╚Licensed under the: [Creative Commons](https://en.wikipedia.org/wiki/en:Creative_Commons) [Attribution-Share Alike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license.
+╚Licensed under the: [Attribution-Share Alike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license.
 """
         e.set_thumbnail(url="https://cdn.discordapp.com/attachments/808426270139351050/808426339082305567/LOGO_Wolf_Games.png")
         await ctx.send(embed=e)
