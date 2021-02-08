@@ -1,6 +1,7 @@
 token = 'YOUR_BOT_TOKEN'
 
 extensions = ['cogs.info',
+              'cogs.owner',
               'jishaku'
 ]
 
