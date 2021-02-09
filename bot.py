@@ -7,7 +7,7 @@ import logging
 from discord.ext import commands
 logging.basicConfig(level=logging.INFO)
 
-bot = commands.Bot(
+bot = commands.AutoShardedBot(
     command_prefix=commands.when_mentioned_or('sp!'),
     case_insensitive=True,
     allowed_mentions=discord.AllowedMentions.none(),
