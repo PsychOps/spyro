@@ -10,6 +10,7 @@ logging.basicConfig(level=logging.INFO)
 bot = commands.AutoShardedBot(
     command_prefix=commands.when_mentioned_or('sp!'),
     case_insensitive=True,
+    case_insensitive_prefix=True,
     allowed_mentions=discord.AllowedMentions.none(),
     max_messages=10000,
     intents=discord.Intents.all(),
