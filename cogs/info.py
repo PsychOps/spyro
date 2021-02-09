@@ -21,7 +21,7 @@ class info(commands.Cog, name="Info"):
     @commands.command(brief="test command")
     async def respond(self, ctx, *, args):
         e=discord.Embed(color=config.red)
-        e.description = f"{args} | Bot has {guild.humans} humans"
+        e.description = f"{args}"
         await ctx.send(embed=e)
     
     
