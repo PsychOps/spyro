@@ -1,1 +1,3 @@
-NO.
+![Python Linter Badge](https://img.shields.io/github/workflow/status/BluewyDev/spyro/Python%20Linter%20via%20Flake8?label=Python%20Linter&logo=python&logoColor=white)
+
+That's all you need to know right now...
