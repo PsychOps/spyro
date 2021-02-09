@@ -36,5 +36,15 @@ class owner(commands.Cog, name="Owner"):
         except Exception as e:
             await ctx.send(f'Failed to load {cog}\n```py\n{e}\n```')
 
+    @commands.command(name="shutdown", aliases=["logout"])
+    @commands.is_owner()
+    async def jsk_shutdown(self, ctx: commands.Context):
+        """
+        Logs this bot out.
+        """
+
+        await ctx.send("Logging out now")
+        await self.bot.logout()
+
 def setup(bot):
     bot.add_cog(owner(bot))
