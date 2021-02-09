@@ -36,16 +36,7 @@ __**Graphics**__
 """
         e.set_thumbnail(url="https://cdn.discordapp.com/attachments/808426270139351050/808426339082305567/LOGO_Wolf_Games.png")
         await ctx.send(embed=e)
-        
-    @commands.command(name="shutdown", aliases=["logout"])
-    @commands.is_owner()
-    async def jsk_shutdown(self, ctx: commands.Context):
-        """
-        Logs this bot out.
-        """
 
-        await ctx.send("Logging out now")
-        await self.bot.logout()# use self.bot not ctx.bot - they're the same but self.bot is betterererer
         
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
