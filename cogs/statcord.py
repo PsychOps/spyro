@@ -1,7 +1,7 @@
 from discord.ext import commands
 
 import statcord
-
+import config
 
 class StatcordPost(commands.Cog):
     def __init__(self, bot):
