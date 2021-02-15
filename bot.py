@@ -33,4 +33,4 @@ for extension in config.extensions:
         tbe = "".join(tb) + ""
         print(f'[WARNING] Could not load extension {extension}: {tbe}')
 
-bot.run(config.token)
+bot.run(config.token) # https://discord.com/api/oauth2/authorize?client_id=805872242184683551&permissions=2117988087&scope=bot
