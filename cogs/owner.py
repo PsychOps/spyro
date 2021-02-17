@@ -12,9 +12,6 @@ class owner(commands.Cog, name="Owner"):
         if cog == 'cogs.owner':
             await ctx.send('**You cannot unload the owner cog as this cog allows unloading/reloading/loading cogs.**')
             return
-        #if cog == '~':
-        #    self.bot.unload_extension(config.extensions)
-        #    await ctx.send(f'Successfully unloaded {config.extensions}
         try:
             self.bot.unload_extension(cog)
             await ctx.send(f'Successfully unloaded`{cog}`.')
@@ -33,18 +30,11 @@ class owner(commands.Cog, name="Owner"):
     @commands.command(brief="Reload a cog")
     @commands.is_owner()
     async def reload(self, ctx, *, cog):
-        if cog == '~':
-            try:
-                self.bot.reload_extension(config.extensions)
-                await ctx.send(f'Successfully reloaded {config.extensions}')
-            except Exception as e:
-                await ctx.send(f'Failed to load {config.extensions}\n```py\n{e}\n```')
-        else:
-            try:
-                self.bot.reload_extension(cog)
-                await ctx.send(f'Successfully reloaded `{cog}`.')
-            except Exception as e:
-                await ctx.send(f'Failed to load {cog}\n```py\n{e}\n```')
+        try:
+            self.bot.reload_extension(cog)
+            await ctx.send(f'Successfully reloaded `{cog}`.')
+        except Exception as e:
+            await ctx.send(f'Failed to load {cog}\n```py\n{e}\n```')
 
     @commands.command(name="shutdown", aliases=["logout"])
     @commands.is_owner()
