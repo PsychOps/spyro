@@ -66,7 +66,7 @@ __**System**__
 **Cores:** {cores}
 **CPU:** {cpu_per}
 **RAM:** {mem_usage}/{memory} MB
-**Storage:** {storage_free} free
+**Storage:** {storage_free} GB free
 """
         await ctx.send(embed=e)
 
