@@ -59,13 +59,13 @@ __**Statistics**__
 **Users:** {len(self.bot.users)}
 **Channels:**
 - `{text:,}` text channels
--  {voice:,}` voice channels
+-  `{voice:,}` voice channels
 
 __**System**__
-**Hosting OS:** {platform.platform()}
+**Hosting OS:** `{platform.platform()}`
 **Cores:** {cores}
 **CPU:** {cpu_per}
-**RAM:** {mem_usage}/{memory}
+**RAM:** {mem_usage}/{memory} MB
 **Storage:** {storage_free} free
 """
         await ctx.send(embed=e)
