@@ -1,4 +1,5 @@
 import discord, config, time, aiohttp
+import psutils
 from discord.ext import commands
 
 class info(commands.Cog, name="Info"):
@@ -37,7 +38,16 @@ __**Graphics**__
         e.set_thumbnail(url="https://cdn.discordapp.com/attachments/808426270139351050/808426339082305567/LOGO_Wolf_Games.png")
         await ctx.send(embed=e)
 
-        
+    @commands.command(brief="bot info")
+    async def info(self, ctx):
+        e = discord.Embed(color=config.blue)
+        e.description = f"""
+__**Statistics**__
+**Guilds:** {len(self.bot.guilds)}
+"""
+        await ctx.send(embed=e)
+
+
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.CommandNotFound):
