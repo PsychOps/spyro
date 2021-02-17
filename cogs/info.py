@@ -43,7 +43,7 @@ __**Graphics**__
     async def info(self, ctx):
         e = discord.Embed(color=config.blue)
         
-        channel_types = Counter(type(c) for c in bot.get_all_channels())
+        channel_types = Counter(type(c) for c in self.bot.get_all_channels())
         voice = channel_types[discord.channel.VoiceChannel]
         text = channel_types[discord.channel.TextChannel]
         
