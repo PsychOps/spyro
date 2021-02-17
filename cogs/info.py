@@ -1,5 +1,6 @@
 import discord, config, time, aiohttp
-import psutil, Counter
+import psutil
+from collections import Counter
 from discord.ext import commands
 
 class info(commands.Cog, name="Info"):
