@@ -1,5 +1,5 @@
 import discord, config, time, aiohttp
-import psutil
+import psutil, platform
 from collections import Counter
 from discord.ext import commands
 
