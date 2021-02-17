@@ -41,9 +41,31 @@ __**Graphics**__
     @commands.command(brief="bot info")
     async def info(self, ctx):
         e = discord.Embed(color=config.blue)
+        
+        channel_types = Counter(type(c) for c in bot.get_all_channels())
+        voice = channel_types[discord.channel.VoiceChannel]
+        text = channel_types[discord.channel.TextChannel]
+        
+        cpu_per = psutil.cpu_percent()
+        cores = psutil.cpu_count()
+        memory = psutil.virtual_memory().total >> 20
+        mem_usage = psutil.virtual_memory().used >> 20
+        storage_free = psutil.disk_usage('/').free >> 30
+        
         e.description = f"""
 __**Statistics**__
 **Guilds:** {len(self.bot.guilds)}
+**Users:** {len(self.bot.users)}
+**Channels:**
+- `{text:,}` text channels
+-  {voice:,}` voice channels
+
+__**System**__
+**Hosting OS:** {platform.platform()}
+**Cores:** {cores}
+**CPU:** {cpu_per}
+**RAM:** {mem_usage}/{memory}
+**Storage:** {storage_free} free
 """
         await ctx.send(embed=e)
 
