@@ -12,7 +12,7 @@ class sugg(commands.Cog, name="Suggestions"):
             await ctx.message.delete()
             await ctx.send("test")
         except Exception as e:
-            embed = discord.Embed(description=str(e), color=discord.Color.red())
+            embed = discord.Embed(description=e, color=discord.Color.red())
             await ctx.send(embed=embed)
 
 def setup(bot):
