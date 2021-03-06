@@ -1,7 +1,7 @@
 import discord, config
 from discord.ext import commands
 
-class sugg(commands.Cog, name="Suggestions"):
+class furh(commands.Cog, name="Furh"):
     def __init__(self, bot):
         self.bot = bot
 
@@ -24,4 +24,4 @@ class sugg(commands.Cog, name="Suggestions"):
         await om.add_reaction('🤷')
 
 def setup(bot):
-    bot.add_cog(sugg(bot))
+    bot.add_cog(furh(bot))
