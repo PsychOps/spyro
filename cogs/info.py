@@ -1,4 +1,4 @@
-import discord, config, time, aiohttp
+import discord, config, time, aiohttp, traceback
 import psutil, platform
 from collections import Counter
 from discord.ext import commands
@@ -25,8 +25,8 @@ class info(commands.Cog, name="Info"):
         e=discord.Embed(color=config.red)
         e.description = f"{args}"
         await ctx.send(embed=e)
-    
-    
+
+
     @commands.command(brief="Credit to others", alias="icon")
     async def credit(self, ctx):
         e = discord.Embed(color=config.blue)
@@ -42,17 +42,17 @@ __**Graphics**__
     @commands.command(brief="bot info")
     async def info(self, ctx):
         e = discord.Embed(color=config.blue)
-        
+
         channel_types = Counter(type(c) for c in self.bot.get_all_channels())
         voice = channel_types[discord.channel.VoiceChannel]
         text = channel_types[discord.channel.TextChannel]
-        
+
         cpu_per = psutil.cpu_percent()
         cores = psutil.cpu_count()
         memory = psutil.virtual_memory().total >> 20
         mem_usage = psutil.virtual_memory().used >> 20
         storage_free = psutil.disk_usage('/').free >> 30
-        
+
         e.description = f"""
 __**Statistics**__
 **Guilds:** {len(self.bot.guilds)}
@@ -77,7 +77,36 @@ __**System**__
             pass
         else:
             embed = discord.Embed(description=str(error), color=discord.Color.red())
-            await ctx.send(embed=embed)
+            msg = await ctx.send(embed=embed)
+            if ctx.author.id in self.bot.owner_ids:
+                await msg.add_reaction('\U0000203c')
+                def react_check(reaction, user):
+                    if ctx.author.id == user.id and reaction.emoji == '\U0000203c' and reaction.message.id == msg.id:
+                        return True
+                    return False
+                try:
+                    reaction, user = await self.bot.wait_for('reaction_add', timeout=60.0, check=react_check)
+                except asyncio.TimeoutError:
+                    try:
+                        await msg.remove_reaction('\U0000203c', self.bot.user)
+                    except:
+                        pass
+                embed2 = discord.Embed(description=''.join(traceback.format_exception(type(error), error, error.__traceback__)), color=discord.Color.red())
+                await ctx.send(embed=embed2)
+                try:
+                    await msg.clear_reactions()
+                except:
+                    pass
+
+    @commands.Cog.listener()
+    async def on_message_edit(self, before, after):
+        """ Tries to re-run a command when a message gets edited! """
+        if after.author.bot is True or before.content == after.content:
+            return
+        prefixes = commands.when_mentioned_or('sp!')(self.bot, after)
+        if after.content.startswith(tuple(prefixes)):
+            ctx = await self.bot.get_context(after)
+            msg = await self.bot.invoke(ctx)
 
 def setup(bot):
     bot.add_cog(info(bot))

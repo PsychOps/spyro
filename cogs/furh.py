@@ -142,9 +142,8 @@ class furh(commands.Cog, name="Furh"):
         await msg.add_reaction(redo)
         await msg.add_reaction(cancel)
         def react_check(reaction, user):
-            if ctx.author == user:
-                if reaction.emoji in [ban, kick, redo, cancel]:
-                    return True
+            if ctx.author.id == user.id and reaction.emoji in [ban, kick, redo, cancel] and reaction.message.id == msg.id:
+                return True
             return False
         try:
             reaction, user = await self.bot.wait_for('reaction_add', timeout=60.0, check=react_check)
