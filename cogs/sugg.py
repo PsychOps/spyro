@@ -10,8 +10,7 @@ class sugg(commands.Cog, name="Suggestions"):
         channel = self.bot.get_channel(817714676934377504)
         if message.channel != channel:
             return
-        user = self.bot.fetch_user(805872242184683551)
-        if message.author == user:
+        if message.author == self.bot.user:
             return
         await message.delete()
         await channel.send(message.content)
