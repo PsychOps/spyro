@@ -31,7 +31,7 @@ class furh(commands.Cog, name="Furh"):
 
     @commands.Cog.listener('on_message')
     async def suggestions(self, message):
-        if message.channel.id != self.suggestion_channel or message.author.id != self.bot.user.id:
+        if message.channel.id != self.suggestion_channel or message.author.id in [self.bot.user.id, 620990340630970425]:
             return
         elif message.author.bot is True:
             return await message.delete()
