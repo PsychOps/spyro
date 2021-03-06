@@ -60,7 +60,8 @@ class furh(commands.Cog, name="Furh"):
     async def reaction(self, payload):
         """ Checks for a Reaction on the Verification Message """
         if payload.message_id == self.message:
-            if payload.member.roles != [payload.member.guild.default_role]:
+            role = ctx.guild.get_role(self.role)
+            if role not in payload.member.roles:
                 return
             try:
                 uembed = discord.Embed(title='Verification', description=f'Hello and Welcome to **{payload.member.guild.name}**!\nDue to raiders, we now have a verification question you will need to complete.\nPlease reply to this message with why you want to be in our server.\nYou can attach 1 image of your OC if you\'d like.', color=discord.Colour.blurple())
@@ -71,10 +72,9 @@ class furh(commands.Cog, name="Furh"):
                 return await remove_reaction(payload)
             else:
                 def message_check(m):
-                    if payload.member.id == m.author.id and payload.member.dm_channel == m.channel:
+                    if payload.member.id == m.author.id and payload.member.dm_channel.id == m.channel.id:
                         return True
-                    else:
-                        return False
+                    return False
                 try:
                     msg1 = await self.bot.wait_for('message', check=message_check, timeout=300.0)
                 except asyncio.TimeoutError:
@@ -90,8 +90,6 @@ class furh(commands.Cog, name="Furh"):
             if msg1.attachments != []:
                 embed.set_image(url=msg1.attachments[0].url)
             await channel.send(embed=embed)# Sending the Verification Message
-            role = payload.member.guild.get_role(self.role)
-            await payload.member.add_roles(role, reason='Submitted a Verification Request')
             await payload.member.send(f':white_check_mark: Submitted your Verification Request!\nYou will get a DM when it gets approved/denied.')
 
     @commands.group(invoke_without_command=True)
