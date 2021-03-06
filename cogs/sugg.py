@@ -13,8 +13,8 @@ class sugg(commands.Cog, name="Suggestions"):
         if message.author == self.bot.user:
             return
         await message.delete()
-        await channel.send(message.content)
-        await add_reaction(message, '👍')
+        om = await channel.send(message.content)
+        await om.add_reaction(['👍', '👎', '🤷'])
 
 def setup(bot):
     bot.add_cog(sugg(bot))
