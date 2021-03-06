@@ -27,24 +27,24 @@ class furh(commands.Cog, name="Furh"):
         self.role = 817795186188484640# Awaiting Verification Role (unverified)
         self.role2 = 817708141494927400# Member Role
         self.bot_role = 817748022200893451# Bot Role
+        self.suggestion_channel = 817714676934377504# Suggestion Channel
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        channel = self.bot.get_channel(817714676934377504)
-        if message.channel != channel:
-            return
-        if message.author == self.bot.user:
-            return
-        if message.author == self.bot.get_user(620990340630970425):
+    @commands.Cog.listener('on_message')
+    async def suggestions(self, message):
+        if message.author.bot is True:
+            return await message.delete()
+        elif message.channel.id != self.suggestion_channel or (message.content.startswith('! ') and message.author.guild_permissions.administrator is True):
             return
         await message.delete()
-        e = discord.Embed(color=config.green)
-        e.description = message.content
-        e.set_author(name=message.author, icon_url=message.author.avatar_url)
-        om = await channel.send(embed=e)
-        await om.add_reaction('👍')
-        await om.add_reaction('👎')
-        await om.add_reaction('🤷')
+        channel = self.bot.get_channel(self.suggestion_channel)
+        embed = discord.Embed(description=str(message.content), color=config.green)
+        embed.set_author(name=str(message.author), icon_url=str(message.author.avatar_url))
+        if message.attachments != []:
+            embed.set_image(url=message.attachments[0].url)
+        embed2 = await channel.send(embed=embed)
+        await embed2.add_reaction('👍')
+        await embed2.add_reaction('🤷')
+        await embed2.add_reaction('👎')
 
     @commands.Cog.listener('on_member_join')
     async def autorole(self, member):
@@ -57,14 +57,14 @@ class furh(commands.Cog, name="Furh"):
             await member.add_roles(role, reason='Autorole')
 
     @commands.Cog.listener('on_guild_channel_create')
-    async def unverified(self, channel):
+    async def unverified_permissions(self, channel):
         """ Makes it so unverified users can't see new channels """
         if channel.guild.id == self.guild:
             role = channel.guild.get_role(self.role)
             await channel.set_permissions(role, reason='Unverified Role Permission Sync')
 
     @commands.Cog.listener('on_raw_reaction_add')
-    async def reaction(self, payload):
+    async def verification_reaction_message(self, payload):
         """ Checks for a Reaction on the Verification Message """
         if payload.message_id == self.message:
             role = payload.member.guild.get_role(self.role)
