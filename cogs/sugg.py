@@ -6,7 +6,7 @@ class sugg(commands.Cog, name="Suggestions"):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_message(self, ctx):
+    async def on_message(self, ctx, *, args):
         channel = self.bot.get_channel(817714676934377504)
         if message.channel != channel:
             return
