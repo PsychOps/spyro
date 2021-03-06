@@ -60,7 +60,7 @@ class furh(commands.Cog, name="Furh"):
     async def reaction(self, payload):
         """ Checks for a Reaction on the Verification Message """
         if payload.message_id == self.message:
-            role = ctx.guild.get_role(self.role)
+            role = payload.member.guild.get_role(self.role)
             if role not in payload.member.roles:
                 return
             try:
