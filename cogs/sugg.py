@@ -14,6 +14,7 @@ class sugg(commands.Cog, name="Suggestions"):
             return
         await message.delete()
         await channel.send(message.content)
+        await message.add_reaction('👍')
 
 def setup(bot):
     bot.add_cog(sugg(bot))
