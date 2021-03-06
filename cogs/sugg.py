@@ -11,6 +11,9 @@ class sugg(commands.Cog, name="Suggestions"):
             self.bot.get_channel(817714676934377504)
             await ctx.message.delete()
             await ctx.send("test")
+        except Exception as e:
+            embed = discord.Embed(description=str(e), color=discord.Color.red())
+            await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(sugg(bot))
