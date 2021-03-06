@@ -26,7 +26,7 @@ class furh(commands.Cog, name="Furh"):
         self.message = 817797163387977758# Verification Message ID
         self.role = 817795186188484640# Awaiting Verification Role (unverified)
         self.role2 = 817708141494927400# Member Role
-        self.bot = 817748022200893451# Bot Role
+        self.bot_role = 817748022200893451# Bot Role
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -51,7 +51,7 @@ class furh(commands.Cog, name="Furh"):
         """ Gives Roles when People Join! """
         if member.guild.id == self.guild:
             if member.bot is True:
-                role = member.guild.get_role(self.bot)
+                role = member.guild.get_role(self.bot_role)
             else:
                 role = member.guild.get_role(self.role)
             await member.add_roles(role, reason='Autorole')
