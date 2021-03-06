@@ -56,6 +56,13 @@ class furh(commands.Cog, name="Furh"):
                 role = member.guild.get_role(self.role)
             await member.add_roles(role, reason='Autorole')
 
+    @commands.Cog.listener('on_guild_channel_create')
+    async def unverified(self, channel):
+        """ Makes it so unverified users can't see new channels """
+        if channel.guild.id == self.guild:
+            role = channel.guild.get_role(self.role)
+            await channel.set_permissions(role, reason='Unverified Role Permission Sync')
+
     @commands.Cog.listener('on_raw_reaction_add')
     async def reaction(self, payload):
         """ Checks for a Reaction on the Verification Message """
@@ -64,7 +71,7 @@ class furh(commands.Cog, name="Furh"):
             if role not in payload.member.roles:
                 return
             try:
-                uembed = discord.Embed(title='Verification', description=f'Hello and Welcome to **{payload.member.guild.name}**!\nDue to raiders, we now have a verification question you will need to complete.\nPlease reply to this message with why you want to be in our server.\nYou can attach 1 image of your OC if you\'d like.', color=discord.Colour.blurple())
+                uembed = discord.Embed(title='Verification', description=f'Hemwo! Welcome to **{payload.member.guild.name}**!\nDue to raiders and trolls, we implemented a verification system with a few questions we\'ll need you to complete. Please reply to this message answering why you wish to be in our server. You are free to provide an image of your OC as well if you wish, but this is not mandatory.', color=discord.Colour.blurple())
                 uembed.set_author(name=payload.member.guild.name, icon_url=payload.member.guild.icon_url)
                 uembed.set_footer(text='You have 5 minutes to respond.')
                 msg = await payload.member.send(embed=uembed)
@@ -89,7 +96,7 @@ class furh(commands.Cog, name="Furh"):
             embed.set_footer(text='This user joined the server')
             if msg1.attachments != []:
                 embed.set_image(url=msg1.attachments[0].url)
-            await channel.send(embed=embed)# Sending the Verification Message
+            await channel.send(content=str(payload.member.id), embed=embed)# Sending the Verification Message
             await payload.member.send(f':white_check_mark: Submitted your Verification Request!\nYou will get a DM when it gets approved/denied.')
 
     @commands.group(invoke_without_command=True)
@@ -107,14 +114,14 @@ class furh(commands.Cog, name="Furh"):
             return await ctx.send(f':x: **{member.name}** does not have an Active Verification Request!')
         await member.remove_roles(role, reason=f'Verification Request Approved by {ctx.author} ({ctx.author.id})')
         await member.add_roles(role2, reason=f'Verification Request Approved by {ctx.author} ({ctx.author.id})')
-        embed = discord.Embed(title='Your Verification Request has Been Approved!', description=f'Your Verification Request for **{ctx.guild.name}** has been approved!\nYou can now get roles in <#738342466792456296> and chat with members in <#715969701771083820>!\nThanks for joining and enjoy your time!', color=discord.Colour.blue())
-        embed.set_author(name=member.guild.name, icon_url=member.guild.icon_url)
+        embed = discord.Embed(description=f'Your verification request for **{ctx.guild.name}** was approved __successfully__!\nYou can now retrieve your roles in <#817746572585467934> as well as chat with our fellow members in <#817693899463196706> :wave:\n\nThank you for joining, and enjoy your stay in our comfy lil world!', color=discord.Colour.blue())
+        embed.set_author(name=str(member.guild.name), icon_url=str(member.guild.icon_url))
         msg = ''
         try:
             await member.send(embed=embed)
         except:
             msg = f'\n:warning: I am not able to DM {member.mention}!'
-        await ctx.send(f':white_check_mark: Approved {member.name}\'s Verification Request!')
+        await ctx.send(f':white_check_mark: Approved {member.name}\'s Verification Request!\n{msg}')
 
     @verification.command()
     @staff()
@@ -143,18 +150,17 @@ class furh(commands.Cog, name="Furh"):
             try:
                 return await msg.clear_reactions()
             except:
-                return await msg.edit(f'{msg.content}\n:notepad_spiral: These options have timed out!')
+                return await msg.edit(f':notepad_spiral: These options have timed out!')
         else:
             if reaction.emoji == cancel:
                 try:
                     await msg.clear_reactions()
                 except:
                     pass
-                return await msg.edit(content=f'{msg.content}\n:notepad_spiral: Canceled this request!')
+                return await msg.edit(content=f':notepad_spiral: Canceled this request!')
             elif reaction.emoji == redo:
-                await member.remove_roles(role, reason=f'Asked to redo Verification Request by {ctx.author} ({ctx.author.id})')
-                embed = discord.Embed(title='Your Verification Request has Been Denied!', description=f'Your Verification Request for **{ctx.guild.name}** has been denied! Please redo your verification request.', color=discord.Colour.red())
-                embed.set_author(name=member.guild.name, icon_url=member.guild.icon_url)
+                embed = discord.Embed(description=f'Your Verification Request for **{ctx.guild.name}** has been denied!\nPlease redo your verification request by reacting to the message in <#{self.channel}>.', color=discord.Colour.red())
+                embed.set_author(name=str(member.guild.name), icon_url=str(member.guild.icon_url))
                 msg = ''
                 try:
                     await member.send(embed=embed)
@@ -162,8 +168,8 @@ class furh(commands.Cog, name="Furh"):
                     msg = f'\n:warning: I am not able to DM {member.mention}!'
                 await ctx.send(f':white_check_mark: Told **{member.name}** to redo their Verification Request!{msg}')
             elif reaction.emoji == kick:
-                embed = discord.Embed(title='You\'ve been Kicked!', description=f'You\'ve been Kicked from **{ctx.guild.name}** for having an Invalid Verification Request.', color=discord.Colour.dark_orange())
-                embed.set_author(name=member.guild.name, icon_url=member.guild.icon_url)
+                embed = discord.Embed(description=f'You\'ve been Kicked from **{ctx.guild.name}** for having an Invalid Verification Request.', color=discord.Colour.dark_orange())
+                embed.set_author(name=str(member.guild.name), icon_url=str(member.guild.icon_url))
                 msg = ''
                 try:
                     await member.send(embed=embed)
@@ -172,8 +178,8 @@ class furh(commands.Cog, name="Furh"):
                 await member.kick(reason=f'Denied Verification Request by {ctx.author} ({ctx.author.id})')
                 await ctx.send(f':white_check_mark: Kicked {member.mention}!{msg}')
             elif reaction.emoji == ban:
-                embed = discord.Embed(title='You\'ve been Banned!', description=f'You\'ve been Banned from **{ctx.guild.name}** for having an Invalid Verification Request.', color=discord.Colour.dark_orange())
-                embed.set_author(name=member.guild.name, icon_url=member.guild.icon_url)
+                embed = discord.Embed(description=f'You\'ve been Banned from **{ctx.guild.name}** for having an Invalid Verification Request.', color=discord.Colour.dark_orange())
+                embed.set_author(name=str(member.guild.name), icon_url=str(member.guild.icon_url))
                 msg = ''
                 try:
                     await member.send(embed=embed)
