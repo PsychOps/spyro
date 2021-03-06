@@ -14,7 +14,7 @@ bot = commands.AutoShardedBot(
     allowed_mentions=discord.AllowedMentions.none(),
     max_messages=10000,
     intents=discord.Intents.all(),
-    owner_ids=[698080201158033409, 443217277580738571],
+#    owner_ids=[698080201158033409, 443217277580738571],
     status=discord.Status.dnd,
     activity=discord.Activity(type=discord.ActivityType.playing, name='sp!help'),
     description="A very cool discord bot for your server!"
