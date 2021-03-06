@@ -12,7 +12,7 @@ class sugg(commands.Cog, name="Suggestions"):
             return
         if message.author == self.bot.user:
             return
-        if message.author == self.bot.fetch_user(620990340630970425):
+        if message.author == self.bot.get_user(620990340630970425):
             return
         await message.delete()
         e = discord.Embed(color=config.green)
