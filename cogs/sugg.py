@@ -12,6 +12,8 @@ class sugg(commands.Cog, name="Suggestions"):
             return
         if message.author == self.bot.user:
             return
+        if message.author == self.bot.fetch_user(620990340630970425):
+            return
         await message.delete()
         e = discord.Embed(color=config.green)
         e.description = message.content
