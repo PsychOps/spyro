@@ -11,3 +11,6 @@ class sugg(commands.Cog, name="Suggestions"):
         self.bot.get_channel(817714676934377504)
         await ctx.message.delete()
         await ctx.send("test")
+
+def setup(bot):
+    bot.add_cog(sugg(bot))
