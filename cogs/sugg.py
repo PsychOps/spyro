@@ -8,9 +8,9 @@ class sugg(commands.Cog, name="Suggestions"):
     @commands.Cog.listener()
     async def on_message(self, ctx, *, args):
         try:
-            self.bot.get_channel(817714676934377504)
-            await ctx.message.delete()
-            await ctx.send("test")
+            channel = self.bot.get_channel(817714676934377504)
+            await channel.message.delete()
+            await channel.send("test")
         except Exception as e:
             embed = discord.Embed(description=e, color=discord.Color.red())
             await ctx.send(embed=embed)
