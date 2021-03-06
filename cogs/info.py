@@ -91,7 +91,7 @@ __**System**__
                         await msg.remove_reaction('\U0000203c', self.bot.user)
                     except:
                         pass
-                embed2 = discord.Embed(description=''.join(traceback.format_exception(type(error), error, error.__traceback__)), color=discord.Color.red())
+                embed2 = discord.Embed(description=f"```py\n{''.join(traceback.format_exception(type(error), error, error.__traceback__)}\n```"), color=discord.Color.red())
                 await ctx.send(embed=embed2)
                 try:
                     await msg.clear_reactions()
