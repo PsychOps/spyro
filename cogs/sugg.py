@@ -6,14 +6,12 @@ class sugg(commands.Cog, name="Suggestions"):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_message(self, ctx, *, args):
-        try:
-            channel = self.bot.get_channel(817714676934377504)
-            await channel.message.delete()
-            await channel.send("test")
-        except Exception as e:
-            embed = discord.Embed(description=e, color=discord.Color.red())
-            await ctx.send(embed=embed)
+    async def on_message(self, ctx):
+        channel = self.bot.get_channel(817714676934377504)
+        if message.channel != channel:
+            return
+        await message.delete()
+        await channel.send(message.content)
 
 def setup(bot):
     bot.add_cog(sugg(bot))
