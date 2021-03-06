@@ -13,7 +13,7 @@ class sugg(commands.Cog, name="Suggestions"):
         if message.author == self.bot.user:
             return
         await message.delete()
-        e = discord.Embed(title="New suggestion", color=config.blue)
+        e = discord.Embed(color=config.blue)
         e.description = message.content
         e.set_author(name=message.author, icon_url=message.author.avatar_url)
         om = await channel.send(embed=e)
