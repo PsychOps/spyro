@@ -5,6 +5,7 @@ import psutil
 import traceback
 import logging
 from discord.ext import commands
+from discord_slash import SlashCommand
 logging.basicConfig(level=logging.INFO)
 
 bot = commands.AutoShardedBot(
@@ -19,6 +20,7 @@ bot = commands.AutoShardedBot(
     activity=discord.Activity(type=discord.ActivityType.playing, name='sp!help'),
     description="A very cool discord bot for your server!"
 )
+slash = SlashCommand(client=bot, sync_commands=True, override_type=True, sync_on_cog_reload=True)
 
 @bot.event
 async def on_ready():
