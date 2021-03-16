@@ -17,7 +17,7 @@ class custom(commands.Cog, name="Custom"):
             if message.reference is not None:
                 msg = await message.channel.fetch_message(message.reference.message_id)
                 embed = msg.embeds[0]
-                embed.add_field(text=f'Comment from {ctx.author.name}', value=str(message.content))
+                embed.add_field(text=f'Comment from {message.author.name}', value=str(message.content))
                 await msg.edit(embed=embed)
                 await message.delete()
             return
