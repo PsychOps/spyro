@@ -14,6 +14,12 @@ class custom(commands.Cog, name="Custom"):
         elif message.author.bot is True:
             return await message.delete()
         elif message.content.startswith('! ') and message.author.guild_permissions.administrator is True:
+            if message.reference is not None:
+                msg = await message.channel.fetch_message(message.reference.message_id)
+                embed = msg.embeds[0]
+                embed.add_field(text=f'Comment from {ctx.author.name}', value=str(message.content))
+                await msg.edit(embed=embed)
+                await message.delete()
             return
         await message.delete()
         channel = self.bot.get_channel(self.suggestion_channel)
