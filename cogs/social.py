@@ -29,4 +29,4 @@ class social(commands.Cog, name="Social"):
         await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(social(bot))g
+    bot.add_cog(social(bot))
