@@ -23,7 +23,7 @@ class social(commands.Cog, name="Social"):
                "https://media1.tenor.com/images/37df0fae36f9cce061c3cec84fc97a08/tenor.gif?itemid=17781844",
                "https://media1.tenor.com/images/ece75ca15b715aacd86724ee23604569/tenor.gif?itemid=16796068",
                "https://media2.giphy.com/media/gl8ymnpv4Sqha/giphy.gif"]
-        embed = discord.Embed(description=f"{ctx.author.display_name} hugged {user.name} :sparkling_heart:", color=discord.Color.blue())
+        embed = discord.Embed(description=f"**{ctx.author.display_name}** hugged **{user.name}** :sparkling_heart:", color=discord.Color.blue())
         embed.set_thumbnail(url=random.choice(hug))
         await ctx.respond()
         await ctx.send(embed=embed)
