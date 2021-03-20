@@ -1,4 +1,4 @@
-import discord, config, random
+import discord, config, random, traceback
 from discord.ext import commands
 from discord_slash import cog_ext, SlashContext
 
