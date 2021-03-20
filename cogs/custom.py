@@ -7,8 +7,6 @@ class custom(commands.Cog, name="Custom"):
     def __init__(self, bot):
         self.bot = bot
         self.suggestion_channel = 820259145830760449# Suggestion Channel
-        self.guild = 715969701771083817
-        self.welcome_channel = 715969701771083820
 
     @commands.Cog.listener('on_message')
     async def suggestions(self, message):
