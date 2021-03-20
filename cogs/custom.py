@@ -6,6 +6,8 @@ class custom(commands.Cog, name="Custom"):
     def __init__(self, bot):
         self.bot = bot
         self.suggestion_channel = 820259145830760449# Suggestion Channel
+        self.guild = 715969701771083817
+        self.welcome_channel = 715969701771083820
 
     @commands.Cog.listener('on_message')
     async def suggestions(self, message):
@@ -32,5 +34,15 @@ class custom(commands.Cog, name="Custom"):
         await embed2.add_reaction('🤷')
         await embed2.add_reaction('👎')
 
+    @commands.Cog.listener()
+    async def on_member_join(self, ctx):
+        if ctx.guild.id != self.guild:
+            return
+        else:
+            channel = self.welcome_channel
+            asyncio.sleep(5)
+            await channel.send("<@&822886791312703518> be sure to welcome our new member!")
+        
+        
 def setup(bot):
     bot.add_cog(custom(bot))
