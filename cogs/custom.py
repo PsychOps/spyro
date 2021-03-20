@@ -33,7 +33,7 @@ class custom(commands.Cog, name="Custom"):
         await embed2.add_reaction('🤷')
         await embed2.add_reaction('👎')
 
-    @commands.Cog.listener()
+    @commands.Cog.listener('on_member_join')
     async def on_member_join(self, member):
         print('member join test1')
         channel = self.bot.get_channel(715969701771083820)
