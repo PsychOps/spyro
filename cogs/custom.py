@@ -1,4 +1,5 @@
-import discord, config, asyncio, datetime, traceback
+import discord, config, asyncio, datetime
+import traceback
 from discord.ext import commands
 from discord_slash import cog_ext, SlashContext
 
