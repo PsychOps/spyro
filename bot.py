@@ -24,7 +24,7 @@ slash = SlashCommand(client=bot, sync_commands=True, override_type=True, sync_on
 
 @bot.event
 async def on_ready():
-    print(f'\n-= {bot.name} has started successfully =-\n')
+    print(f'\n-= {self.bot.name} has started successfully =-\n')
 
 for extension in config.extensions:
     try:
