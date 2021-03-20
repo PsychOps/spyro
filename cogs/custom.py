@@ -36,9 +36,8 @@ class custom(commands.Cog, name="Custom"):
         await embed2.add_reaction('👎')
 
     @commands.Cog.listener()
-    async def on_member_join(member, self, ctx):
+    async def on_member_join(member):
             channel = self.bot.get_channel(715969701771083820)
-            asyncio.sleep(5)
             await channel.send("<@&822886791312703518> be sure to welcome our new member!")
         
         
