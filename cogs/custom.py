@@ -37,9 +37,6 @@ class custom(commands.Cog, name="Custom"):
 
     @commands.Cog.listener()
     async def on_member_join(self, ctx):
-        if ctx.guild.id != self.guild:
-            return
-        else:
             channel = self.welcome_channel
             asyncio.sleep(5)
             await channel.send("<@&822886791312703518> be sure to welcome our new member!")
