@@ -6,7 +6,7 @@ class social(commands.Cog, name="Social"):
     def __init__(self, bot):
         self.bot = bot
 
-    @cog_ext.cog_slash(guild_ids=[820256957369679882], options = [{
+    @cog_ext.cog_slash(guild_ids=[820256957369679882, 715969701771083817], options = [{
                    "name": "user",
                    "description": "The person you want to hug!",
                    "type": 6,
