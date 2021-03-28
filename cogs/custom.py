@@ -37,7 +37,7 @@ class custom(commands.Cog, name="Custom"):
     async def on_member_join(self, member):
         print('member join test1')
         channel = self.bot.get_channel(715969701771083820)
-        await channel.send("<@&822886791312703518> be sure to welcome our new member!")
+        await channel.send(f"<@&822886791312703518> be sure to welcome {member.mention}!")
         print('member join test2')
             
         
