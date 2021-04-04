@@ -12,23 +12,13 @@ class info(commands.Cog, name="Info"):
     async def staff(self, ctx):
         the_list = []
         for user in ctx.guild.members:
-            if ctx.channel.permissions_for(user).ban_members:
+            if ctx.channel.permissions_for(user).kick_members or \
+               ctx.channel.permissions_for(user).ban_members:
                 the_list.append(str(user))
         e = discord.Embed(color=discord.Color.blue())
         e.description = ', '.join(the_list)
         await ctx.reply(embed=e)
 
-    @commands.command()
-    async def stafftest(self, ctx, *, permission):
-        the_list = []
-        for user in ctx.guild.members:
-            test = permission
-            if ctx.channel.permissions_for(user).ban_members or \
-               ctx.channel.permissions_for(user).kick_members:
-                the_list.append(str(user))
-        e = discord.Embed(color=discord.Color.blue())
-        e.description = ', '.join(the_list)
-        await ctx.reply(embed=e)
     
     @commands.command(brief="Bot's latency to discord")
     async def ping(self, ctx):
