@@ -7,6 +7,16 @@ class info(commands.Cog, name="Info"):
     def __init__(self, bot):
         self.bot = bot
 
+
+    @commands.command()
+    async def staff(self, ctx):
+        for user in ctx.guild.members:
+            if ctx.channel.permissions_for(user).ban_members:
+                e = discord.Embed(color=discord.Color.blue())
+                e.description = ', '.join(user)
+                await ctx.reply(embed=e)
+
+    
     @commands.command(brief="Bot's latency to discord")
     async def ping(self, ctx):
         """ See bot's latency to discord """
