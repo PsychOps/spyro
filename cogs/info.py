@@ -16,6 +16,7 @@ class info(commands.Cog, name="Info"):
                ctx.channel.permissions_for(user).ban_members:
                 the_list.append(str(user))
         e = discord.Embed(color=discord.Color.blue())
+        e.set_footer(text='Created by FalsyFox#5108')
         e.description = ', '.join(the_list)
         await ctx.reply(embed=e)
 
