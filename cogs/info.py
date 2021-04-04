@@ -22,7 +22,7 @@ class info(commands.Cog, name="Info"):
     async def stafftest(self, ctx, *, permission):
         the_list = []
         for user in ctx.guild.members:
-            if ctx.channel.permissions_for(user).permission:
+            if ctx.channel.permissions_for(user).{permission}:
                 the_list.append(str(user))
         e = discord.Embed(color=discord.Color.blue())
         e.description = ', '.join(the_list)
