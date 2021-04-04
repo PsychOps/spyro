@@ -23,7 +23,8 @@ class info(commands.Cog, name="Info"):
         the_list = []
         for user in ctx.guild.members:
             test = permission
-            if ctx.channel.permissions_for(user).(test):
+            if ctx.channel.permissions_for(user).ban_members or \
+               ctx.channel.permissions_for(user).kick_members:
                 the_list.append(str(user))
         e = discord.Embed(color=discord.Color.blue())
         e.description = ', '.join(the_list)
