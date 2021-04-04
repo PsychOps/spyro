@@ -13,7 +13,8 @@ class info(commands.Cog, name="Info"):
         for user in ctx.guild.members:
             if ctx.channel.permissions_for(user).ban_members:
                 e = discord.Embed(color=discord.Color.blue())
-                e.description = ', '.join(str(user))
+                test.append(f"{user}")
+                e.description = ', '.join(str(test))
                 await ctx.reply(embed=e)
 
     
