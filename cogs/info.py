@@ -10,11 +10,13 @@ class info(commands.Cog, name="Info"):
 
     @commands.command()
     async def staff(self, ctx):
+        the_list = []
         for user in ctx.guild.members:
             if ctx.channel.permissions_for(user).ban_members:
-                e = discord.Embed(color=discord.Color.blue())
-                e.description = ', '.join(str(user))
-                await ctx.reply(embed=e)
+                the_list.append(str(user))
+        e = discord.Embed(color=discord.Color.blue())
+        e.description = ', '.join(the_list)
+        await ctx.reply(embed=e)
 
     
     @commands.command(brief="Bot's latency to discord")
