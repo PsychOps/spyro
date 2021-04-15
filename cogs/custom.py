@@ -92,6 +92,7 @@ class custom(commands.Cog, name="Custom"):
                 embed.set_image(url=msg1.attachments[0].url)
             await channel.send(content=str(payload.member.id), embed=embed)# Sending the Verification Message
             await payload.member.send(f':white_check_mark: Submitted your Verification Request!\nYou will get a DM when it gets approved/denied.')
+            await payload.member.add_roles(role, reason='Submitted Verification Request')
 
     @commands.group(invoke_without_command=True)
     async def verification(self, ctx):
