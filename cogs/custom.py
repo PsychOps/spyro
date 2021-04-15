@@ -10,11 +10,11 @@ async def remove_reaction(payload):
 
 def staff():
     async def predicate(ctx):
-        guild = ctx.bot.get_guild(715969701771083817)# Guild ID
+        guild = ctx.bot.get_guild(820256957369679882)# Guild ID
         if ctx.guild is not None and ctx.guild == guild:
             member = guild.get_member(ctx.author.id)
             if member is not None:
-                role = guild.get_role(715976394022060034)# Staff Role ID
+                role = guild.get_role(832257593979568198)# Staff Role ID
                 if role in member.roles:
                     return True
         return False
@@ -94,7 +94,7 @@ class custom(commands.Cog, name="Custom"):
             await payload.member.send(f':white_check_mark: Submitted your Verification Request!\nYou will get a DM when it gets approved/denied.')
             await payload.member.add_roles(role, reason='Submitted Verification Request')
 
-    @commands.group(invoke_without_command=True)
+    @commands.group(invoke_without_command=True, aliases=['v'])
     async def verification(self, ctx):
         """ Verification Commands (Staff Only) """
         await ctx.send_help(ctx.command)
