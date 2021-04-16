@@ -62,7 +62,7 @@ class custom(commands.Cog, name="Custom"):
         if payload.message_id == self.message:
             role = payload.member.guild.get_role(self.role)
             role2 = payload.member.guild.get_role(self.role2)
-            if role2 in payload.member.roles or payload.member.roles == [payload.member.guild.default_role]:
+            if role2 in payload.member.roles or payload.member.roles != [payload.member.guild.default_role]:
                 return
             try:
                 uembed = discord.Embed(title='Verification', description=f'Hemwo! Welcome to **{payload.member.guild.name}**!\nDue to raiders and trolls, we\'ve implemented a verification system with a few questions we\'ll need you to complete. Please reply to this message answering why you wish to be in our server. You are free to provide an image of your OC as well if you wish, but this is not mandatory.', color=discord.Colour.blurple())
