@@ -26,10 +26,12 @@ class custom(commands.Cog, name="Custom"):
         self.suggestion_channel = 831884556147490878# Suggestion Channel
         self.guild = 820256957369679882# Guild ID
         self.channel = 832252093216718910# Staff Verification Channel ID
-        self.message = 832255187786924033# Verification Message ID
+        self.message = 832689237844688957# Verification Message ID
         self.role = 832252199827931186# Awaiting Verification Role
         self.role2 = 831902985746382859# Member Role
         self.bot_role = 831884505316851753# Bot Role
+        self.ping_channel = 832688899913547836# Verification Channel (for pings)
+        self.general_chat = 831884563214762004# Main Chat (for welcome messages)
 
     @commands.Cog.listener('on_message')
     async def suggestions(self, message):
@@ -55,6 +57,12 @@ class custom(commands.Cog, name="Custom"):
         await embed2.add_reaction('👍')
         await embed2.add_reaction('🤷')
         await embed2.add_reaction('👎')
+
+    @commands.Cog.listener('on_member_join')
+    async def ping_on_join(self, member):
+        guild = self.bot.get_guild(self.guild)
+        channel = guild.get_channel(self.ping_channel)
+        await channel.send(str(member.mention), delete_after=0.01, allowed_mentions=discord.AllowedMentions(users=True))
 
     @commands.Cog.listener('on_raw_reaction_add')
     async def verification_reaction(self, payload):
@@ -117,6 +125,8 @@ class custom(commands.Cog, name="Custom"):
         except:
             msg = f'\n:warning: I am not able to DM {member.mention}!'
         await ctx.send(f':white_check_mark: Approved {member.name}\'s Verification Request!\n{msg}')
+        general = ctx.guild.get_channel(self.general_chat)
+        await general.send(f'<:verifiedserver:780987580203925529> **{member.name}** has been verified into the __Furhalla Island!__')
 
     @verification.command()
     @staff()
