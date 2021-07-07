@@ -73,7 +73,7 @@ class custom(commands.Cog, name="Custom"):
             if role2 in payload.member.roles or payload.member.roles != [payload.member.guild.default_role]:
                 return
             try:
-                uembed = discord.Embed(title='Verification', description=f'Hey **{payload.member.display_name}**! Thanks for joining **{payload.member.guild.name}**.\nBefore joining our other members in chat, we'll need to verify you to make sure you're not a raider.\nPlease tell us why you want to be a part of the server and your sexuality. Thanks!', color=discord.Colour.blurple())
+                uembed = discord.Embed(title='Verification', description=f'Hey **{payload.member.display_name}**! Thanks for joining **{payload.member.guild.name}**.\nBefore joining our other members in chat, we\'ll need to verify you to make sure you\'re not a raider.\nPlease tell us why you want to be a part of the server and your sexuality. Thanks!', color=discord.Colour.blurple())
                 uembed.set_author(name=payload.member.guild.name, icon_url=payload.member.guild.icon_url)
                 uembed.set_footer(text='You have 5 minutes to respond.')
                 msg = await payload.member.send(embed=uembed)
