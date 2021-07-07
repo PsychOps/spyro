@@ -10,11 +10,11 @@ async def remove_reaction(payload):
 
 def staff():
     async def predicate(ctx):
-        guild = ctx.bot.get_guild(820256957369679882)# Guild ID
+        guild = ctx.bot.get_guild(834544478064607252)# Guild ID
         if ctx.guild is not None and ctx.guild == guild:
             member = guild.get_member(ctx.author.id)
             if member is not None:
-                role = guild.get_role(832257593979568198)# Staff Role ID
+                role = guild.get_role(862461768600125440)# Staff Role ID
                 if role in member.roles:
                     return True
         return False
@@ -23,19 +23,19 @@ def staff():
 class custom(commands.Cog, name="Custom"):
     def __init__(self, bot):
         self.bot = bot
-        self.suggestion_channel = 831884556147490878# Suggestion Channel
-        self.guild = 820256957369679882# Guild ID
-        self.channel = 832252093216718910# Staff Verification Channel ID
-        self.message = 832689237844688957# Verification Message ID
-        self.role = 832252199827931186# Awaiting Verification Role
-        self.role2 = 831902985746382859# Member Role
-        self.bot_role = 831884505316851753# Bot Role
-        self.ping_channel = 832688899913547836# Verification Channel (for pings)
-        self.general_chat = 831884563214762004# Main Chat (for welcome messages)
+        self.suggestion_channel = 861577107528089630# Suggestion Channel
+        self.guild = 834544478064607252# Guild ID
+        self.channel = 862462066345902100# Staff Verification Channel ID
+        self.message = 862463007476940820# Verification Message ID
+        self.role = 862463200284639262# Awaiting Verification Role
+        self.role2 = 861332359156465695# Member Role
+        self.bot_role = 861561459015155722# Bot Role
+        self.ping_channel = 861332244375535677# Verification Channel (for pings)
+        self.general_chat = 861350638977024021# Main Chat (for welcome messages)
 
     @commands.Cog.listener('on_message')
     async def suggestions(self, message):
-        if message.channel.id != self.suggestion_channel or message.author.id in [self.bot.user.id, 620990340630970425]:
+        if message.channel.id != self.suggestion_channel or message.author.id in [self.bot.user.id, 843252491473649665]:
             return
         elif message.author.bot is True:
             return await message.delete()
