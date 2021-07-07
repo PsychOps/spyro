@@ -73,7 +73,7 @@ class custom(commands.Cog, name="Custom"):
             if role2 in payload.member.roles or payload.member.roles != [payload.member.guild.default_role]:
                 return
             try:
-                uembed = discord.Embed(title='Verification', description=f'Hemwo! Welcome to **{payload.member.guild.name}**!\nDue to raiders and trolls, we\'ve implemented a verification system with a few questions we\'ll need you to complete. Please reply to this message answering why you wish to be in our server. You are free to provide an image of your OC as well if you wish, but this is not mandatory.', color=discord.Colour.blurple())
+                uembed = discord.Embed(title='Verification', description=f'Hey **{payload.member.display_name}**! Thanks for joining **{payload.member.guild.name}**.\nBefore joining our other members in chat, we'll need to verify you to make sure you're not a raider.\nPlease tell us why you want to be a part of the server and your sexuality. Thanks!', color=discord.Colour.blurple())
                 uembed.set_author(name=payload.member.guild.name, icon_url=payload.member.guild.icon_url)
                 uembed.set_footer(text='You have 5 minutes to respond.')
                 msg = await payload.member.send(embed=uembed)
@@ -117,7 +117,7 @@ class custom(commands.Cog, name="Custom"):
             return await ctx.send(f':x: **{member.name}** does not have an Active Verification Request!')
         await member.remove_roles(role, reason=f'Verification Request Approved by {ctx.author} ({ctx.author.id})')
         await member.add_roles(role2, reason=f'Verification Request Approved by {ctx.author} ({ctx.author.id})')
-        embed = discord.Embed(description=f'Your verification request for **{ctx.guild.name}** was approved __successfully__!\nYou can now retrieve your roles in <#817746572585467934> as well as chat with our fellow members in <#817693899463196706> :wave:\n\nThank you for joining, and enjoy your stay in our comfy lil world!', color=discord.Colour.blue())
+        embed = discord.Embed(description=f'Your verification request for **{ctx.guild.name}** was approved __successfully__!\nYou can now retrieve your roles in <#861554760414003249> as well as chat with our fellow members in <#861350638977024021> :wave:', color=discord.Colour.blue())
         embed.set_author(name=str(member.guild.name), icon_url=str(member.guild.icon_url))
         msg = ''
         try:
@@ -126,7 +126,7 @@ class custom(commands.Cog, name="Custom"):
             msg = f'\n:warning: I am not able to DM {member.mention}!'
         await ctx.send(f':white_check_mark: Approved {member.name}\'s Verification Request!\n{msg}')
         general = ctx.guild.get_channel(self.general_chat)
-        await general.send(f'<:verifiedserver:780987580203925529> **{member.name}** has been verified into the __Furhalla Island!__')
+        await general.send(f'<:pridemoji_ex1:861556592822059048> Welcome **{member.display_name}** to the cabin! The safe haven for all LGBTQ members to meet. <:trans_kitty:861564763670315038>')
 
     @verification.command()
     @staff()
