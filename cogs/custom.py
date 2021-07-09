@@ -10,11 +10,11 @@ async def remove_reaction(payload):
 
 def staff():
     async def predicate(ctx):
-        guild = ctx.bot.get_guild(820256957369679882)# Guild ID
+        guild = ctx.bot.get_guild(834544478064607252)# Guild ID
         if ctx.guild is not None and ctx.guild == guild:
             member = guild.get_member(ctx.author.id)
             if member is not None:
-                role = guild.get_role(832257593979568198)# Staff Role ID
+                role = guild.get_role(862461768600125440)# Staff Role ID
                 if role in member.roles:
                     return True
         return False
@@ -23,19 +23,19 @@ def staff():
 class custom(commands.Cog, name="Custom"):
     def __init__(self, bot):
         self.bot = bot
-        self.suggestion_channel = 831884556147490878# Suggestion Channel
-        self.guild = 820256957369679882# Guild ID
-        self.channel = 832252093216718910# Staff Verification Channel ID
-        self.message = 832689237844688957# Verification Message ID
-        self.role = 832252199827931186# Awaiting Verification Role
-        self.role2 = 831902985746382859# Member Role
-        self.bot_role = 831884505316851753# Bot Role
-        self.ping_channel = 832688899913547836# Verification Channel (for pings)
-        self.general_chat = 831884563214762004# Main Chat (for welcome messages)
+        self.suggestion_channel = 861577107528089630# Suggestion Channel
+        self.guild = 834544478064607252# Guild ID
+        self.channel = 862462066345902100# Staff Verification Channel ID
+        self.message = 862463007476940820# Verification Message ID
+        self.role = 862463200284639262# Awaiting Verification Role
+        self.role2 = 861332359156465695# Member Role
+        self.bot_role = 861561459015155722# Bot Role
+        self.ping_channel = 861332244375535677# Verification Channel (for pings)
+        self.general_chat = 861350638977024021# Main Chat (for welcome messages)
 
     @commands.Cog.listener('on_message')
     async def suggestions(self, message):
-        if message.channel.id != self.suggestion_channel or message.author.id in [self.bot.user.id, 620990340630970425]:
+        if message.channel.id != self.suggestion_channel or message.author.id in [self.bot.user.id, 843252491473649665]:
             return
         elif message.author.bot is True:
             return await message.delete()
@@ -67,7 +67,7 @@ class custom(commands.Cog, name="Custom"):
             if role2 in payload.member.roles or payload.member.roles != [payload.member.guild.default_role]:
                 return
             try:
-                uembed = discord.Embed(title='Verification', description=f'Hemwo! Welcome to **{payload.member.guild.name}**!\nDue to raiders and trolls, we\'ve implemented a verification system with a few questions we\'ll need you to complete. Please reply to this message answering why you wish to be in our server. You are free to provide an image of your OC as well if you wish, but this is not mandatory.', color=discord.Colour.blurple())
+                uembed = discord.Embed(title='Verification', description=f'Hey **{payload.member.display_name}**! Thanks for joining **{payload.member.guild.name}**.\nBefore joining our other members in chat, we\'ll need to verify you to make sure you\'re not a raider.\nPlease tell us why you want to be a part of the server and your sexuality. Thanks!', color=discord.Colour.blurple())
                 uembed.set_author(name=payload.member.guild.name, icon_url=payload.member.guild.icon_url)
                 uembed.set_footer(text='You have 5 minutes to respond.')
                 msg = await payload.member.send(embed=uembed)
@@ -111,7 +111,7 @@ class custom(commands.Cog, name="Custom"):
             return await ctx.send(f':x: **{member.name}** does not have an Active Verification Request!')
         await member.remove_roles(role, reason=f'Verification Request Approved by {ctx.author} ({ctx.author.id})')
         await member.add_roles(role2, reason=f'Verification Request Approved by {ctx.author} ({ctx.author.id})')
-        embed = discord.Embed(description=f'Your verification request for **{ctx.guild.name}** was approved __successfully__!\nYou can now retrieve your roles in <#817746572585467934> as well as chat with our fellow members in <#817693899463196706> :wave:\n\nThank you for joining, and enjoy your stay in our comfy lil world!', color=discord.Colour.blue())
+        embed = discord.Embed(description=f'Your verification request for **{ctx.guild.name}** was approved __successfully__!\nYou can now retrieve your roles in <#861554760414003249> as well as chat with our fellow members in <#861350638977024021> :wave:', color=discord.Colour.blue())
         embed.set_author(name=str(member.guild.name), icon_url=str(member.guild.icon_url))
         msg = ''
         try:
@@ -120,7 +120,7 @@ class custom(commands.Cog, name="Custom"):
             msg = f'\n:warning: I am not able to DM {member.mention}!'
         await ctx.send(f':white_check_mark: Approved {member.name}\'s Verification Request!\n{msg}')
         general = ctx.guild.get_channel(self.general_chat)
-        await general.send(f'<:verifiedserver:780987580203925529> **{member.name}** has been verified into the __Furhalla Island!__')
+        await general.send(f'<:pridemoji_ex1:861556592822059048> Welcome **{member.display_name}** to the cabin! The safe haven for all LGBTQ members to meet. <:trans_kitty:861564763670315038>')
 
     @verification.command()
     @staff()
