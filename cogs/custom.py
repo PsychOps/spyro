@@ -58,12 +58,6 @@ class custom(commands.Cog, name="Custom"):
         await embed2.add_reaction('🤷')
         await embed2.add_reaction('👎')
 
-    @commands.Cog.listener('on_member_join')
-    async def ping_on_join(self, member):
-        guild = self.bot.get_guild(self.guild)
-        channel = guild.get_channel(self.ping_channel)
-        await channel.send(str(member.mention), delete_after=0.01, allowed_mentions=discord.AllowedMentions(users=True))
-
     @commands.Cog.listener('on_raw_reaction_add')
     async def verification_reaction(self, payload):
         """ Checks for a Reaction on the Verification Message """
