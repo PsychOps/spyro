@@ -85,7 +85,7 @@ class custom(commands.Cog, name="Custom"):
                     return await remove_reaction(payload)
             channel = payload.member.guild.get_channel(self.channel)
             warning = ''
-            if payload.member.created_at >= datetime.datetime.now() - datetime.timedelta(days=7):
+            if payload.member.created_at.replace(tzinfo=None) >= datetime.datetime.now() - datetime.timedelta(days=7):
                 warning = f'\n:warning: This account was made {payload.member.created_at.strftime("%B %d %Y at %H:%M UTC")}'
             embed = discord.Embed(title='New Verification Request', description=f'{payload.member.mention} just requested verification!{warning}\n**Why do you want to join the server?**\n{msg1.content}', color=discord.Colour.blurple(), timestamp=payload.member.joined_at)
             embed.set_author(name=str(payload.member), icon_url=payload.member.avatar_url)
