@@ -120,7 +120,7 @@ class custom(commands.Cog, name="Custom"):
             msg = f'\n:warning: I am not able to DM {member.mention}!'
         await ctx.send(f':white_check_mark: Approved {member.name}\'s Verification Request!\n{msg}')
         general = ctx.guild.get_channel(self.general_chat)
-        await general.send(f'<:pridemoji_ex1:861556592822059048> Welcome **{member.display_name}** to the cabin! The safe haven for all LGBTQ members to meet. <:trans_kitty:861564763670315038>')
+        await general.send(f'<:pridemoji_ex1:861556592822059048> Welcome **{member.mention}** to the cabin! The safe haven for all LGBTQ members to meet. <:trans_kitty:861564763670315038>')
 
     @verification.command()
     @staff()
