@@ -23,15 +23,15 @@ def staff():
 class custom(commands.Cog, name="Custom"):
     def __init__(self, bot):
         self.bot = bot
-        self.suggestion_channel = 861577107528089630# Suggestion Channel
+        self.suggestion_channel = 904305875785773056# Suggestion Channel
         self.guild = 834544478064607252# Guild ID
-        self.channel = 862462066345902100# Staff Verification Channel ID
-        self.message = 862463007476940820# Verification Message ID
-        self.role = 862463200284639262# Awaiting Verification Role
-        self.role2 = 861332359156465695# Member Role
-        self.bot_role = 861561459015155722# Bot Role
-        self.ping_channel = 861332244375535677# Verification Channel (for pings)
-        self.general_chat = 861350638977024021# Main Chat (for welcome messages)
+        self.channel = 904305867837542421# Staff Verification Channel ID
+        self.message = 904306506755899392# Verification Message ID
+        self.role = 904305850636722187# Awaiting Verification Role
+        self.role2 = 904305850062094376# Member Role
+        self.bot_role = 904305851626557440# Bot Role
+        self.ping_channel = 904305867405541486# Verification Channel (for pings)
+        self.general_chat = 904305873751539742# Main Chat (for welcome messages)
 
     @commands.Cog.listener('on_message')
     async def suggestions(self, message):
