@@ -14,7 +14,7 @@ def staff():
         if ctx.guild is not None and ctx.guild == guild:
             member = guild.get_member(ctx.author.id)
             if member is not None:
-                role = guild.get_role(862461768600125440)# Staff Role ID
+                role = guild.get_role(904305845435785276)# Staff Role ID
                 if role in member.roles:
                     return True
         return False
