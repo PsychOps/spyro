@@ -39,11 +39,11 @@ class info(commands.Cog, name="Info"):
 
             try:
                 checkmsg = await ctx.send(embed=e)
-                await checkmsg.add_reaction(emotes.checkmark)
-                await checkmsg.add_reaction(emotes.crossmark)
+                await checkmsg.add_reaction('<:Check:909435999216623636>')
+                await checkmsg.add_reaction('<:Cross:845654734916681749>')
                 react, user = await self.bot.wait_for('reaction_add', check=check, timeout=30)
 
-                if str(react) == emotes.checkmark:
+                if str(react) == '<:Check:909435999216623636>':
                     try:
                         await checkmsg.clear_reactions()
                     except Exception:
@@ -55,7 +55,7 @@ class info(commands.Cog, name="Info"):
                     await checkmsg.edit(embed=embed)
                     return
 
-                if str(react) == emotes.crossmark:
+                if str(react) == '<:Cross:845654734916681749>':
                     try:
                         await checkmsg.clear_reactions()
                     except Exception:
