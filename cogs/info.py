@@ -20,7 +20,60 @@ class info(commands.Cog, name="Info"):
         e.description = ', '.join(the_list)
         await ctx.reply(embed=e)
 
-    
+    @commands.command()
+    @commands.guild_only()
+    @commands.has_permissions(manage_messages=True)
+    @commands.cooldown(1, 5, commands.BucketType.user)
+    async def announce(self, ctx, channel: discord.TextChannel, *, desc):
+        """ Announce something """
+        if not channel:
+            return await ctx.send('Please provide a channel to use.')
+        if len(desc) > 2000:
+            return await ctx.send('Please make your announcement shorter then 2000 characters.')
+        if len(desc) < 2000:
+            e = discord.Embed(color=discord.Color.dark_teal())
+            e.description = "Do you want the message embedded?"
+
+            def check(r, u):
+                return u.id == ctx.author.id and r.message.id == checkmsg.id
+
+            try:
+                checkmsg = await ctx.send(embed=e)
+                await checkmsg.add_reaction(emotes.checkmark)
+                await checkmsg.add_reaction(emotes.crossmark)
+                react, user = await self.bot.wait_for('reaction_add', check=check, timeout=30)
+
+                if str(react) == emotes.checkmark:
+                    try:
+                        await checkmsg.clear_reactions()
+                    except Exception:
+                        pass
+                    e = discord.Embed(color=discord.Color.random(), description=desc)
+                    await channel.send(embed=e)
+
+                    embed = discord.Embed(color=discord.Color.green(), description=f"Sent embedded announcement in **{channel}**.")
+                    await checkmsg.edit(embed=embed)
+                    return
+
+                if str(react) == emotes.crossmark:
+                    try:
+                        await checkmsg.clear_reactions()
+                    except Exception:
+                        pass
+                    await channel.send(desc)
+
+                    embed2 = discord.Embed(color=discord.Color.green(), description=f"Sent plain announcement in **{channel}**.")
+                    await checkmsg.edit(embed=embed2)
+                    return
+
+            except asyncio.TimeoutError:
+                try:
+                    await checkmsg.clear_reactions()
+                except Exception:
+                    pass
+                etimeout = discord.Embed(color=discord.Color.dark_red(), description="Command timed out, canceling...")
+                return await checkmsg.edit(embed=etimeout)
+        
     @commands.command(brief="Bot's latency to discord")
     async def ping(self, ctx):
         """ See bot's latency to discord """
